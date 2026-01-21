@@ -8,7 +8,6 @@ on:
         required: false
         default: 'Triggered for Updates'
         type: string
-      
       release_type:
         description: 'Select release type to publish: snapshot or release'
         required: true
@@ -17,12 +16,19 @@ on:
         options:
           - snapshot
           - release
-
       publication_type:
         description: 'Select artifact type to publish: aar, jar, or both (only for release)'
         required: true
         default: both
         type: string
+      group_path:
+        description: 'Select Maven group path'
+        required: true
+        type: choice
+        default: io/inji
+        options:
+          - io/inji
+          - io/mosip
     
 
 jobs:
@@ -32,12 +38,13 @@ jobs:
     with:
       SERVICE_LOCATION: 'kotlin'
       ANDROID_SERVICE_LOCATION: 'android'
+      GROUP_PATH: ${{ inputs.group_path }}
       JAVA_VERSION: 21
       LICENSE_NAME: 'MPL-2.0'
       RELEASE_TYPE: ${{ inputs.release_type }}
     secrets:
       OSSRH_USER: ${{ secrets.OSSRH_USER }}
-      OSSRH_URL: ${{ secrets.OSSRH_CENTRAL_URL }}
+      OSSRH_URL: ${{ secrets.GRADLE_OSSRH_URL }}
       OSSRH_SECRET: ${{ secrets.OSSRH_SECRET }}
       OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
       GPG_SECRET: ${{ secrets.GPG_SECRET }}
@@ -49,13 +56,14 @@ jobs:
     with:
       SERVICE_LOCATION: 'kotlin'
       ANDROID_SERVICE_LOCATION: 'android'
+      GROUP_PATH: ${{ inputs.group_path }}
       JAVA_VERSION: 21
       LICENSE_NAME: 'MPL-2.0'
       RELEASE_TYPE: ${{ inputs.release_type }}
       PUBLICATION_TYPE: ${{ inputs.publication_type }}
     secrets:
       OSSRH_USER: ${{ secrets.OSSRH_USER }}
-      OSSRH_URL: ${{ secrets.OSSRH_GRADLE_URL }}
+      OSSRH_URL: ${{ secrets.GRADLE_OSSRH_URL }}
       OSSRH_SECRET: ${{ secrets.OSSRH_SECRET }}
       OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
       GPG_SECRET: ${{ secrets.GPG_SECRET }}

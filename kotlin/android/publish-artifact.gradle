@@ -20,25 +20,36 @@ publishing {
     aar(MavenPublication) {
       pom {
         withXml {
-          def dependenciesNode = asNode().appendNode('dependencies')
-          project.configurations.implementation.allDependencies.each {
-            def dependencyNode = dependenciesNode.appendNode('dependency')
-            dependencyNode.appendNode('groupId', it.group)
-            dependencyNode.appendNode('artifactId', it.name)
-            dependencyNode.appendNode('version', it.version)
-          }
+          asNode().appendNode('name', "Secure-Keystore")
+          asNode().appendNode('url', "https://github.com/inji/pixelpass")
+          asNode().appendNode('description', "Kotlin library to store the secure data in android keystore")
 
           asNode().appendNode('licenses').appendNode('license').with {
             appendNode('name', 'MPL-2.0')
             appendNode('url', 'https://www.mozilla.org/en-US/MPL/2.0/')
           }
 
+          asNode().appendNode('scm').with {
+            appendNode('connection', 'scm:git:git://github.com/inji/secure-keystore.git')
+            appendNode('developerConnection', 'scm:git:ssh://github.com:inji/secure-keystore.git')
+            appendNode('url', "https://github.com/inji/secure-keystore")
+            appendNode('tag', "HEAD")
+          }
+
           asNode().appendNode('developers').appendNode('developer').with {
             appendNode('id', 'Your developer ID')
             appendNode('name', 'Mosip')
             appendNode('email', 'mosip.emailnotifier@gmail.com')
-            appendNode('organization', 'io.mosip')
-            appendNode('organizationUrl', 'https://github.com/mosip/secure-keystore')
+            appendNode('organization', 'io.inji')
+            appendNode('organizationUrl', 'https://inji.io')
+          }
+
+          def dependenciesNode = asNode().appendNode('dependencies')
+          project.configurations.implementation.allDependencies.each {
+            def dependencyNode = dependenciesNode.appendNode('dependency')
+            dependencyNode.appendNode('groupId', it.group)
+            dependencyNode.appendNode('artifactId', it.name)
+            dependencyNode.appendNode('version', it.version)
           }
 
           def pluginsNode = asNode().appendNode('build').appendNode('plugins')
@@ -84,7 +95,7 @@ publishing {
           gpgArgumentsNode.appendNode('arg', 'loopback')
         }
       }
-      groupId = "io.mosip"
+      groupId = "io.inji"
       artifactId = "secure-keystore"
       version = "0.4.0-SNAPSHOT"
       if (project.gradle.startParameter.taskNames.any { it.contains('assembleRelease') }) {

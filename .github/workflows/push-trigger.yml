@@ -20,15 +20,6 @@ on:
       - develop*
       - MOSIP*
 jobs:
-  build-secure-keystore:
-    uses: mosip/kattu/.github/workflows/npm-android-build.yml@master
-    with:
-      SERVICE_LOCATION: 'js'
-      ANDROID_LOCATION: 'android'
-      BUILD_ARTIFACT: secure-keystore
-    secrets:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_INJI_TEAM }}
-
   build-kotlin:
     uses: mosip/kattu/.github/workflows/gradle-build.yml@master
     with:
