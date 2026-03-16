@@ -31,7 +31,7 @@ jobs:
   sonar-analysis-kotlin:
     needs: build-kotlin
     if: "${{  github.event_name != 'pull_request' }}"
-    uses: mosip/kattu/.github/workflows/gradlew-sonar-analysis.yml@master-java21
+    uses: mosip/kattu/.github/workflows/gradlew-sonar-analysis.yml@dsd9685
     with:
       SERVICE_LOCATION: kotlin/android
     secrets:
