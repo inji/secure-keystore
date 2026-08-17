@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.sonarqube'
 apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 buildscript {
   ext.kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['SecureKeystore_kotlinVersion']
