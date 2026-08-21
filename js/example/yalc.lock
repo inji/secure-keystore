@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@mosip/secure-keystore": {
-      "signature": "77510276df229b29db58c633ef4d4ee4",
-      "file": true
-    }
-  }
-}
