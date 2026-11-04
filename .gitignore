@@ -30,8 +30,8 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-android/app/libs
-android/keystores/debug.keystore
+kotlin/android/app/libs
+kotlin/android/keystores/debug.keystore
 
 # Expo
 .expo/*
